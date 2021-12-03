@@ -4,7 +4,9 @@
   Nothing to do? Play parkour with this infinite track that generates programmatically while you jump from one block to another.
 </p>
 
-![AutoParkour screenshot](screenshot.gif)
+<p align="center">
+  <img src="screenshot.gif" alt="AutoParkour screenshot">
+</p>
 
 | Command  | Description              | Permission          |
 |----------|--------------------------|---------------------|
