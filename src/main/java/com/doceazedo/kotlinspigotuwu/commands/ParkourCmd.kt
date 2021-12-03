@@ -14,7 +14,7 @@ object ParkourCmd : CommandExecutor {
 
         resetBlocks(sender)
         placeNextBlock(sender)
-        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&eBoa sorte!"))
+        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aBoa sorte, &e" + sender.displayName + "&a!"))
         return true
     }
 }
