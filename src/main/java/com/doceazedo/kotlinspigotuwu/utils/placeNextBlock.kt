@@ -14,17 +14,14 @@ fun placeNextBlock (player: Player) {
     if (playerData?.currentBlock != null) {
         playerData.lastBlock?.type = Material.AIR
 
-        var negativeOrPositive = if (Random.nextBoolean()) 1 else -1
-        loc = playerData.currentBlock!!.location
-        loc.x += Random.nextInt(2, 4) * negativeOrPositive
-        loc.y += Random.nextInt(0, 1)
-        loc.z += Random.nextInt(2, 4) * negativeOrPositive
+        loc = player.location.add(player.location.direction.multiply(Random.nextInt(3, 5)))
+        loc.y = playerData.currentBlock!!.location.y + Random.nextInt(0, 2)
+        // TODO: multiply direction until 4, tweak x and z between -1 and 1
 
         KotlinSpigotUwU.players[player.uniqueId] = KotlinSpigotUwU.PlayerData(playerData?.currentBlock, loc.block)
     } else {
         loc = player.location
-        loc.x += 2
-        loc.y += 2
+        loc.y -= 2
 
         KotlinSpigotUwU.players[player.uniqueId] = KotlinSpigotUwU.PlayerData(null, loc.block)
     }
