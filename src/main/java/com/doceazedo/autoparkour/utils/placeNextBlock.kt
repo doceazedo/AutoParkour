@@ -1,15 +1,14 @@
-package com.doceazedo.kotlinspigotuwu.utils
+package com.doceazedo.autoparkour.utils
 
-import com.doceazedo.kotlinspigotuwu.KotlinSpigotUwU
+import com.doceazedo.autoparkour.Main
 import org.bukkit.ChatColor
-import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.Sound
 import org.bukkit.entity.Player
 import kotlin.random.Random
 
 fun placeNextBlock (player: Player) {
-    var blocks = KotlinSpigotUwU.playerBlocks[player.uniqueId]
+    var blocks = Main.playerBlocks[player.uniqueId]
     if (blocks == null) blocks = ArrayList()
 
     if (blocks.isEmpty()) {
@@ -46,6 +45,6 @@ fun placeNextBlock (player: Player) {
         blocks.add(loc.block)
     }
 
-    KotlinSpigotUwU.playerBlocks[player.uniqueId] = blocks
+    Main.playerBlocks[player.uniqueId] = blocks
     player.world.playSound(player.location, Sound.ENTITY_CHICKEN_EGG, 1f, 1f)
 }
