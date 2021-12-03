@@ -1,5 +1,6 @@
 package com.doceazedo.kotlinspigotuwu.commands
 
+import com.doceazedo.kotlinspigotuwu.KotlinSpigotUwU
 import com.doceazedo.kotlinspigotuwu.utils.placeNextBlock
 import com.doceazedo.kotlinspigotuwu.utils.resetBlocks
 import org.bukkit.command.CommandExecutor
@@ -11,8 +12,15 @@ object ParkourCmd : CommandExecutor {
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<String>): Boolean {
         if (sender !is Player) return false
 
-        resetBlocks(sender)
-        placeNextBlock(sender)
+        var blocks = KotlinSpigotUwU.playerBlocks[sender.uniqueId]
+        if (blocks == null) blocks = ArrayList()
+
+        if (blocks.isEmpty()) {
+            placeNextBlock(sender)
+        } else {
+            resetBlocks(sender)
+        }
+
         return true
     }
 }

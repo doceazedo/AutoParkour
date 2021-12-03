@@ -11,7 +11,7 @@ object DoParkour : Listener {
     @EventHandler
     public fun onPlayerMove(e: PlayerMoveEvent) {
         val blocks = KotlinSpigotUwU.playerBlocks[e.player.uniqueId] ?: return
-        if (e.to!!.block.getRelative(BlockFace.DOWN) != blocks.last()) return
+        if (blocks.isEmpty() || e.to!!.block.getRelative(BlockFace.DOWN) != blocks.last()) return
         placeNextBlock(e.player)
     }
 }
