@@ -7,3 +7,4 @@ description: My very first Kotlin Spigot plugin
 website: https://doceazedo.com
 commands:
   parkour:
+    permission: autoparkour.parkour
