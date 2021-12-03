@@ -4,7 +4,6 @@ import com.doceazedo.kotlinspigotuwu.utils.placeNextBlock
 import com.doceazedo.kotlinspigotuwu.utils.resetBlocks
 import org.bukkit.command.CommandExecutor
 import org.bukkit.entity.Player
-import org.bukkit.ChatColor
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 
@@ -14,7 +13,6 @@ object ParkourCmd : CommandExecutor {
 
         resetBlocks(sender)
         placeNextBlock(sender)
-        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aBoa sorte, &e" + sender.displayName + "&a!"))
         return true
     }
 }

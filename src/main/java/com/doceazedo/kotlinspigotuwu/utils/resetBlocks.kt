@@ -5,10 +5,7 @@ import org.bukkit.Material
 import org.bukkit.entity.Player
 
 fun resetBlocks (player: Player) {
-    var playerData = KotlinSpigotUwU.players[player.uniqueId]
-
-    playerData?.lastBlock?.type = Material.AIR
-    playerData?.currentBlock?.type = Material.AIR
-
-    KotlinSpigotUwU.players[player.uniqueId] = KotlinSpigotUwU.PlayerData(null, null)
+    var blocks = KotlinSpigotUwU.playerBlocks[player.uniqueId] ?: return
+    for (block in blocks) block.type = Material.AIR
+    KotlinSpigotUwU.playerBlocks[player.uniqueId]?.clear()
 }

@@ -1,6 +1,7 @@
 package com.doceazedo.kotlinspigotuwu.utils
 
 import com.doceazedo.kotlinspigotuwu.KotlinSpigotUwU
+import org.bukkit.ChatColor
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.Sound
@@ -8,24 +9,43 @@ import org.bukkit.entity.Player
 import kotlin.random.Random
 
 fun placeNextBlock (player: Player) {
-    var playerData = KotlinSpigotUwU.players[player.uniqueId]
-    var loc: Location
+    var blocks = KotlinSpigotUwU.playerBlocks[player.uniqueId]
+    if (blocks == null) blocks = ArrayList()
 
-    if (playerData?.currentBlock != null) {
-        playerData.lastBlock?.type = Material.AIR
+    if (blocks.isEmpty()) {
+        // Starting, placing first block
+        var loc = player.location
+        loc.y = player.location.y - 1
 
-        loc = player.location.add(player.location.direction.multiply(Random.nextInt(3, 5)))
-        loc.y = playerData.currentBlock!!.location.y + Random.nextInt(0, 2)
-        // TODO: multiply direction until 4, tweak x and z between -1 and 1
+        if (loc.block.type != Material.AIR) {
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cThe block below you must be air!"))
+            return
+        }
 
-        KotlinSpigotUwU.players[player.uniqueId] = KotlinSpigotUwU.PlayerData(playerData?.currentBlock, loc.block)
+        loc.block.type = Material.MELON
+        blocks.add(loc.block)
+
+        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aGood luck and have fun, &e" + player.displayName + "&a!"))
     } else {
-        loc = player.location
-        loc.y -= 2
-
-        KotlinSpigotUwU.players[player.uniqueId] = KotlinSpigotUwU.PlayerData(null, loc.block)
+        // Just step on last block, deleting old blocks
+        val lastBlock = blocks.last()
+        for (block in blocks) {
+            if (block == lastBlock) continue
+            block.type = Material.AIR
+        }
+        blocks.clear()
+        blocks.add(lastBlock)
     }
 
-    loc.block.type = Material.MELON
+    for (i in 1..5) {
+        var loc = blocks.last().location.add(player.location.direction.multiply(3))
+        loc.x = loc.x + Random.nextInt(-1, 1)
+        loc.z = loc.z + Random.nextInt(-1, 1)
+        loc.y = blocks.last().location.y + Random.nextInt(0, 2)
+        loc.block.type = Material.MELON
+        blocks.add(loc.block)
+    }
+
+    KotlinSpigotUwU.playerBlocks[player.uniqueId] = blocks
     player.world.playSound(player.location, Sound.ENTITY_CHICKEN_EGG, 1f, 1f)
 }

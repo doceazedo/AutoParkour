@@ -10,12 +10,8 @@ import org.bukkit.event.player.PlayerMoveEvent
 object DoParkour : Listener {
     @EventHandler
     public fun onPlayerMove(e: PlayerMoveEvent) {
-        var lastBlock = KotlinSpigotUwU.players[e.player.uniqueId]?.lastBlock
-        var currentBlock = KotlinSpigotUwU.players[e.player.uniqueId]?.currentBlock
-
-        if (e.to?.block?.getRelative(BlockFace.DOWN) != currentBlock) return
-        if (lastBlock == currentBlock) return
-
+        val blocks = KotlinSpigotUwU.playerBlocks[e.player.uniqueId] ?: return
+        if (e.to!!.block.getRelative(BlockFace.DOWN) != blocks.last()) return
         placeNextBlock(e.player)
     }
 }

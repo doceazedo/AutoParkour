@@ -9,13 +9,8 @@ import java.util.*
 
 
 class KotlinSpigotUwU : JavaPlugin() {
-    data class PlayerData(
-        var lastBlock: Block?,
-        var currentBlock: Block?
-    )
-
     companion object {
-        var players: HashMap<UUID, PlayerData> = HashMap<UUID, PlayerData>()
+        var playerBlocks: HashMap<UUID, MutableList<Block>> = HashMap<UUID, MutableList<Block>>()
     }
 
     override fun onEnable() {
