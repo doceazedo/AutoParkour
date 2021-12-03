@@ -1,0 +1,9 @@
+name: KotlinSpigotUwU
+version: '${project.version}'
+main: com.doceazedo.kotlinspigotuwu.KotlinSpigotUwU
+api-version: 1.17
+authors: [ DoceAzedo ]
+description: My very first Kotlin Spigot plugin
+website: https://doceazedo.com
+commands:
+  parkour:
