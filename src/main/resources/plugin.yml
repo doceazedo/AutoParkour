@@ -1,7 +1,7 @@
 name: AutoParkour
 version: '${project.version}'
 main: com.doceazedo.autoparkour.Main
-api-version: 1.17
+api-version: 1.13
 authors: [ DoceAzedo ]
 description: Play parkour with an infinite track that generates programmatically
 website: https://doceazedo.com
