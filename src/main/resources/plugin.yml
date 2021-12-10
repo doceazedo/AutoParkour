@@ -8,3 +8,5 @@ website: https://doceazedo.com
 commands:
   parkour:
     permission: autoparkour.parkour
+libraries:
+  - org.jetbrains.kotlin:kotlin-stdlib:1.6.0
